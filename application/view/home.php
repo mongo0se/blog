@@ -21,11 +21,11 @@
 	</div>
 	
 	<!-- Add Post Button -->
+	<?php if (isset($user)): ?>
 	<div class="row">
-		<a href="<?= PATH . '/posts/edit' ?>" class="btn btn-primary">
-			Add Post
-		</a>
+		<a href="<?= PATH . '/posts/edit' ?>" class="btn btn-primary">Add Post</a>
 	</div>
+	<?php endif; ?>
 	
 	<!-- results -->
 	<div class="row">
@@ -51,10 +51,21 @@
 				</td>
 
 				<!-- body (first 100 chars) -->
-				<td><?= (strlen($post['body']) > 50) ? substr($post['body'], 97) . '...' : $post['body'] ?></td>
+				<td><?= (strlen($post['body']) > 50) ? substr($post['body'], 0, 97) . '...' : $post['body'] ?></td>
 			</tr>
 		<?php endforeach; ?>
 		</table>
 	</div>
+	
+	<!-- pagination next -->
+	<?php if ($pageSize < $total && $currentPage != ($totalPages-1)): ?>
+		<a href="<?= PATH ?>/home/page/<?= $currentPage + 1 ?>" class="btn btn-default">next</a>
+	<?php endif; ?>
+	
+	<!-- pagination previous -->
+	<?php if ($pageSize < $total && $currentPage != 0): ?>
+		<a href="<?= PATH ?>/home/page/<?= $currentPage - 1 ?>" class="btn btn-default">previous</a>
+	<?php endif; ?>
+	
 </div>
 

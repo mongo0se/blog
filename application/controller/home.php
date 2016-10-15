@@ -4,7 +4,7 @@
  */
 class Home extends Controller {
 	
-	public function __construct($controller,$action) {
+	public function __construct($controller, $action) {
 
 		// load core controller functions
 		parent::__construct($controller, $action);
@@ -14,19 +14,40 @@ class Home extends Controller {
 		
 		// load user model
 		$this->load_model('User');
-		
 	}
 	
+	// homepage
 	public function index() {
 
-		// Load search page
-		$this->home_page();
+		// show page 1
+		$this->page();
 	}
 	
-	public function home_page()  {
-
-		// get posts
-		$posts = $this->get_model('Post')->getAll();	
+	// show page of results
+	public function page ($pageNo = 0) {
+		
+		// default page size is 5
+		$pageSize = 5;
+		$this->get_view()->set('pageSize', $pageSize);		
+		
+		// get total
+		$totalNo = count($this->get_model('Post')->getAll());
+		$this->get_view()->set('total', $totalNo);	
+		
+		// pass current page no
+		$this->get_view()->set('currentPage', $pageNo);		
+		
+		// number of pages
+		$this->get_view()->set('totalPages', $totalNo / $pageSize);
+		
+		// starting position
+		$start = $pageNo * $pageSize;
+		
+		// ending position
+		$end = $start + $pageSize;
+		
+		// get range of results
+		$posts = $this->get_model('Post')->getRange($start, $end);	
 
 		// send post data to view
 		$this->get_view()->set('posts', $posts);

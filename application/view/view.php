@@ -13,6 +13,12 @@
 		</div>
 	</div>
 	
+	<!-- summary -->
+	<div class="row">
+		<i><?= $post['summary'] ?></i>
+	</div>
+	
+	<!-- body -->
 	<div class="row">
 		<?= $post['body'] ?>
 	</div>

@@ -41,7 +41,7 @@ class Router {
 		
 		// action not found
 		if (!(int)method_exists($controller, $action)) {
-
+			
 			// 404 Error
 			$controller = 'Errors';
 			$action = 'index';
