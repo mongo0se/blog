@@ -12,6 +12,10 @@ This is a very simple blog which has the following functionality:
 
 ## Setup
 
+### Config
+
+The config file (which is rather, self explanatory) is located in /config/config.php
+
 ### Test Account
 
 admin logon is
@@ -20,11 +24,11 @@ password - password
 
 ### Database
 
-The schema is in mysql dump file in db/.
+The schema is in mysql dump file in db/blog.sql.
 
 ### Troubleshooting
 
-* path is set to project being in www/blog/ dir
+* path is set to project being in /var/www/html/blog/ dir
 * AllowOverride All enabled for this .htaccess redirects - otherwise routing is broken.
 
 ### Todo
